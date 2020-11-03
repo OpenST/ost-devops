@@ -52,7 +52,9 @@ class HighSeverityProcessor {
       let remoteApp = data.remoteApp ? data.remoteApp : errorEntry.app;
       errorEntry['remoteApp'] = remoteApp;
 
-      pagerDutyPromisesArray.push(oThis._createPagerDutyTicket(errorEntry));
+      if(oThis.pagerDutyVars.highSeverityApiKey !== '' || (oThis.infraAlert && oThis.pagerDutyVars.highSeverityInfraApiKey !== '')){
+        pagerDutyPromisesArray.push(oThis._createPagerDutyTicket(errorEntry));
+      }
 
       emailPromisesArray.push(
         oThis._sendEmail(errorEntry).catch(async function(error) {
@@ -73,10 +75,12 @@ class HighSeverityProcessor {
       );
     }
 
-    let pagerDutyResp = await Promise.all(pagerDutyPromisesArray);
-    for (let i = 0; i < pagerDutyResp.length; i++) {
-      let resp = pagerDutyResp[i];
-      console.log("PagerDuty => ", resp);
+    if(pagerDutyPromisesArray.length > 0){
+      let pagerDutyResp = await Promise.all(pagerDutyPromisesArray);
+      for (let i = 0; i < pagerDutyResp.length; i++) {
+        let resp = pagerDutyResp[i];
+        console.log("PagerDuty => ", resp);
+      }
     }
 
     const resolvedPromises = await Promise.all(emailPromisesArray);
