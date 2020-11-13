@@ -21,8 +21,8 @@ class PepoCampaignsConstants {
 
   static get notifierEmailIds() {
     return {
-      [Constants.saasApiApp]: ['backend@ost.com'],
-      [Constants.stackApp]: ['devops@ost.com']
+      [Constants.saasApiApp]: ['backend@ost.com', 'dev@decrypt.co', 'ben+platformalerts@ost.com'],
+      [Constants.stackApp]: ['devops@ost.com', 'dev@decrypt.co', 'ben+platformalerts@ost.com']
     };
   }
 

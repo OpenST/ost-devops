@@ -79,7 +79,7 @@ class ErrorLogsConstants {
    * @return {Number}
    */
   static get maxRetryCount() {
-    return 20;
+    return 2;
   }
 
   /**
