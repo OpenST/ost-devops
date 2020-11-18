@@ -448,7 +448,7 @@ AnsibleInventoryData[Constants.saasApiApp] = {
         exec_file_path: "executables/balanceVerifier.js ",
         extra_vars: "--cronProcessId {{identifier}}"
       },
-      timer: "*:5,10,15,20,25,30,35,40,45,50,55"
+      timer: "00/1:03"
     },
     updateRealTimeGasPrice:{
       identifier: "{{identifier}}",
